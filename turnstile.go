@@ -3,6 +3,7 @@ package turnstile
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -47,6 +48,10 @@ func (client *TurnstileClient) Verify(options VerifyOpts) (*VerifyResponse, erro
 	res, err := client.Do(req)
 	if err != nil {
 		return nil, err
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("err: failed with status %d", res.StatusCode)
 	}
 
 	defer res.Body.Close()
