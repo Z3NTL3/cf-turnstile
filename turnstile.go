@@ -6,8 +6,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-
-	"github.com/google/go-querystring/query"
 )
 
 // Allow adjusting endpoint url
@@ -28,26 +26,26 @@ type VerifyResponse struct {
 
 // Available options for verify requests
 type VerifyOpts struct {
-	Secret         string `url:"secret"`          // required
-	Response       string `url:"response"`        // required
-	RemoteIP       string `url:"remoteip"`        // optional
-	IdemPotencyKey string `url:"idempotency_key"` // optional
+	Secret         string `json:"secret"`          // required
+	Response       string `json:"response"`        // required
+	RemoteIP       string `json:"remoteip"`        // optional
+	IdemPotencyKey string `json:"idempotency_key"` // optional
 }
 
 // Send verify requests using the given options
 func (client *TurnstileClient) Verify(options VerifyOpts) (*VerifyResponse, error) {
-	payload, err := query.Values(options)
+	payload, err := json.Marshal(&options)
 	if err != nil {
 		return nil, err
 	}
 
-	payload_buff := bytes.NewBufferString(payload.Encode())
+	payload_buff := bytes.NewBuffer(payload)
 	req, err := http.NewRequest(http.MethodPost, SiteVerifyEndpoint, payload_buff)
 	if err != nil {
 		return nil, err
 	}
 
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Add("Content-Type", "application/json")
 
 	res, err := client.Do(req)
 	if err != nil {

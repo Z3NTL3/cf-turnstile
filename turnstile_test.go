@@ -37,7 +37,7 @@ func TestClient(t *testing.T) {
 			Response: "XXXX.DUMMY.TOKEN.XXXX",
 		})
 		if err != nil {
-			t.Logf("error: %s", err)
+			t.Fatalf("error: %s", err)
 		}
 
 		t.Logf("res: %+v\n", res)
