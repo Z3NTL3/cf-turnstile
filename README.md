@@ -1,3 +1,4 @@
 ### todos
 - readme/docs
-- releasing package
+- releasing package at github.com/z3ntl3 not Simpaix-net org
+- ci/cd workflow
