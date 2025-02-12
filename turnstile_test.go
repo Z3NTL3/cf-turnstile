@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SimpaiX-net/turnstile"
+	"github.com/z3ntl3/turnstile"
 )
 
 // Output unit test:
