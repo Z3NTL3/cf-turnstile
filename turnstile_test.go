@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/z3ntl3/turnstile"
+	turnstile "github.com/z3ntl3/cf-turnstile"
 )
 
 // Output unit test:
@@ -16,8 +16,6 @@ import (
 //	turnstile_test.go:33: res: &{Success:false ErrorCodes:[timeout-or-duplicate] ChallengeTS: Hostname:}
 //
 // --- PASS: TestClient (0.15s)
-// PASS
-// ok      github.com/SimpaiX-net/turnstile        0.585s
 func TestClient(t *testing.T) {
 	client := turnstile.TurnstileClient{
 		Client: &http.Client{},
