@@ -21,7 +21,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/z3ntl3/turnstile"
+	turnstile "github.com/z3ntl3/cf-turnstile"
 )
 
 func main() {
